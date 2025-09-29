@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nike-landing-page
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: app=docker.io/gunjan37raj/nike-landing-page
+    argocd-image-updater.argoproj.io/app.update-strategy: latest
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/GunjanRajSingh/Nike-Landing-Page.git' 
+    targetRevision: main
+    path: helm-chart
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nike-landing-page
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

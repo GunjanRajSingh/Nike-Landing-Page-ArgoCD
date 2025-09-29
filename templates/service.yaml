@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nike-landing-page
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: nike-landing-page
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 80
