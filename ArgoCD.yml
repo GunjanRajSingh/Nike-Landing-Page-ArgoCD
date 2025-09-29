@@ -1,3 +1,19 @@
+trigger:
+ branches:
+   include:
+     - main
+   exclude:
+     - features/**
+
+pool:
+ vmImage: ubuntu-latest
+
+
+variables:
+  - group: ArgoCD-Variable
+
+
+
 stages:
 - stage: Build
   displayName:
